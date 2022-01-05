@@ -1,13 +1,13 @@
-%½«ÐÂÍø±íÖÐµÄ½ÚµãÊý×Ö»¯
+%ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ½Úµï¿½ï¿½ï¿½ï¿½Ö»ï¿½
 netlist=fopen('new_netlist');
-node_LUT_num=0;			%³õÊ¼»¯½Úµã²éÕÒ±íÖÐµÄ½ÚµãÊýÄ¿Îª0£¬²éÕÒ±íÖÐÓÐµÄ½ÚµãÃû³Æ±íÊ¾¸Ã½ÚµãÒÑ±»Êý×Ö»¯
+node_LUT_num=0;			%ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½Ò±ï¿½ï¿½ÐµÄ½Úµï¿½ï¿½ï¿½Ä¿Îª0ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ï¿½ï¿½ï¿½ï¿½ÐµÄ½Úµï¿½ï¿½ï¿½ï¿½Æ±ï¿½Ê¾ï¿½Ã½Úµï¿½ï¿½Ñ±ï¿½ï¿½ï¿½ï¿½Ö»ï¿½
 line_num=1;
 
 while ~feof(netlist)
-	line=fgetl(netlist);                                    %¶ÁÈ¡Íø±íÖÐµÄÒ»ÐÐ
-	line_element=regexp(line,  '(\S)+', 'match');           %½«±¾ÐÐ¸÷Ïî·Ç¿ÕÄÚÈÝ´æµ½line_elementÖÐ
+	line=fgetl(netlist);                                    %ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½Ò»ï¿½ï¿½
+	line_element=regexp(line,  '(\S)+', 'match');           %ï¿½ï¿½ï¿½ï¿½ï¿½Ð¸ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½Ý´æµ½line_elementï¿½ï¿½
     
-    line_element_end_value=regexp(line_element{end},  '[\d]+[.]*[\d]*', 'match');     %matlab²»ÄÜÊ¶±ðn,m,kµÈÊýÁ¿¼¶£¬¹Ê×öÈçÏÂ´¦Àí
+    line_element_end_value=regexp(line_element{end},  '[\d]+[.]*[\d]*', 'match');     %matlabï¿½ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½n,m,kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½ï¿½ï¿½
     line_element_end_power=regexp(line_element{end},  '([a-zA-Z])+', 'match');
     
     if isempty(line_element_end_power)
@@ -36,28 +36,28 @@ while ~feof(netlist)
     end
     
 
-	if (strcmpi(line(1), 'K'))          %Èç¹ûÓöµ½»¥¸Ð£¬Ôò²»×ö½Úµã´¦Àí£¬ÒòÎª»¥¸ÐµÄÃèÊöÃ»ÓÐ½ÚµãÐÅÏ¢
-        line_element{4}=str2double(line_element{4});        %½²»¥¸ÐÖµ´Ó×Ö·û´®ÐÎÊ½×ª»¯ÎªÊý×ÖÁ¿
+	if (strcmpi(line(1), 'K'))          %ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµã´¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð½Úµï¿½ï¿½ï¿½Ï¢
+        line_element{4}=str2double(line_element{4});        %ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ê½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		net{line_num}=line_element;
 		line_num=line_num+1;
 		continue;
     end
 	     
 	node_order=1;
-	while node_order<=2                      %ÒÀ´Î´¦ÀíÃ¿ÐÐ¶Áµ½µÄ2¸ö½Úµã
-		if (strcmpi(line_element{node_order+1}, '0'))       %Èç¹ûÊÇÈ«¾Ö½Úµã£¬ÔòÖ±½Ó×ª»»ÎªÊý×ÖÖµ0
+	while node_order<=2                      %ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ã¿ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½Úµï¿½
+		if (strcmpi(line_element{node_order+1}, '0'))       %ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½Ö½Úµã£¬ï¿½ï¿½Ö±ï¿½ï¿½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Öµ0
 			line_element{node_order+1}=0;
             node_order=node_order+1;
 			continue;
 		end
-		if (~node_LUT_num)                                  %Èç¹û½Úµã²éÕÒ±íÎª¿Õ£¬Ôò³õÊ¼»¯»¯²éÕÒ±í£¬½«µÚÒ»¸ö·Ç0½Úµã´æÈë²éÕÒ±í
+		if (~node_LUT_num)                                  %ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½Ò±ï¿½Îªï¿½Õ£ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½0ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ï¿½
             node_LUT_num=1;
             node_LUT{1}=line_element{node_order+1};
             continue
         end
         
 		node_seek_num=1;
-		while node_seek_num<=node_LUT_num				    %Èç¹ûÕýÔÚ´¦ÀíµÄ½Úµã¿ÉÒÔÔÚ²éÕÒ±íÖÐÕÒµ½£¬ÔòÊý×Ö»¯¸Ã½Úµã£¬Êý×Ö»¯µÄÖµÎª¸Ã½ÚµãÔÚ²éÕÒ±íÖÐµÄÐòºÅ
+		while node_seek_num<=node_LUT_num				    %ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½Ä½Úµï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½Ò±ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ã½Úµã£¬ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ÖµÎªï¿½Ã½Úµï¿½ï¿½Ú²ï¿½ï¿½Ò±ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½
 			if (strcmpi(line_element{node_order+1}, node_LUT{node_seek_num}))
 				line_element{node_order+1}=node_seek_num;
                 break;
@@ -66,15 +66,15 @@ while ~feof(netlist)
 			end
 		end
 		
-		if (node_seek_num>node_LUT_num)						 %Èç¹ûÕýÔÚ´¦ÀíµÄ½Úµã²»ÔÚ²éÕÒ±íÖÐ£¬ÄÇÃ´½«¸Ã½Úµã¼ÓÈë²éÕÒ±í£¬È»ºóÊý×Ö»¯¸Ã½Úµã£¬Êý×Ö»¯µÄÖµÎª¸Ã½ÚµãÔÚ²éÕÒ±íÖÐµÄÐòºÅ
+		if (node_seek_num>node_LUT_num)						 %ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½Ä½Úµã²»ï¿½Ú²ï¿½ï¿½Ò±ï¿½ï¿½Ð£ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½Ã½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ï¿½ï¿½ï¿½È»ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ã½Úµã£¬ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ÖµÎªï¿½Ã½Úµï¿½ï¿½Ú²ï¿½ï¿½Ò±ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½
 			node_LUT_num=node_LUT_num+1;
 			node_LUT{node_LUT_num}=line_element{node_order+1};
 			line_element{node_order+1}=node_LUT_num;
         end
         node_order=node_order+1;
 	end
-	line_element{end}=str2double(line_element{end});         %Êý×Ö»¯Ôª¼þÖµ
-	net{line_num}=line_element;                              %½«Ôª¼þÖµºÍ½ÚµãÊý×Ö»¯ºóµÄÐÂµÄÒ»ÐÐÔª¼þÃèÊöÄÚÈÝ±£´æµ½net
-	line_num=line_num+1;									 %¶ÁÏÂÒ»ÌõÔª¼þÃèÊöÍø±í
+	line_element{end}=str2double(line_element{end});         %ï¿½ï¿½ï¿½Ö»ï¿½Ôªï¿½ï¿½Öµ
+	net{line_num}=line_element;                              %ï¿½ï¿½Ôªï¿½ï¿½Öµï¿½Í½Úµï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Ò»ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ï¿½æµ½net
+	line_num=line_num+1;									 %ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 end
-fprintf('È«¾ÖÍø±íÎÄ¼þ½ÚµãÊý×Ö»¯Íê³É¡£\n');
+fprintf('èŠ‚ç‚¹æ•°å­—åŒ–\n');

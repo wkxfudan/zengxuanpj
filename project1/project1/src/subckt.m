@@ -1,42 +1,39 @@
-%ÌáÈ¡×ÓµçÂ·ĞÅÏ¢
-netlist=fopen(input_net);		%´ò¿ªÍø±í
-subckt_n=0;					    %×ÓµçÂ·ÊıÄ¿
-subckt_flag=0;					%±ê¼ÇÊÇ·ñÔÚÍø±íµÄ×ÓµçÂ·ÃèÊö¶ÎÂäÖĞ
+netlist=fopen(benchmark);		%æ‰“å¼€ç½‘è¡¨benchmark
 
-while ~feof(netlist)			%ÅĞ¶ÏÊÇ·ñ¶Áµ½Íø±í½áÊøÎ»ÖÃ
+subckt_n=0;					    %è®¡æ•°å­ç”µè·¯æ•°ç›®
+subckt_flag=0;					%æ ‡è®°
 
-	line=fgetl(netlist);		%¶ÁÈ¡Íø±íÖĞµÄÒ»ĞĞ
+while ~feof(netlist)			%åˆ¤æ–­æ˜¯å¦è¯»åˆ°ç½‘è¡¨çš„æœ€åä¸€è¡Œ
+
+	line=fgetl(netlist);		%è¯»å–ç½‘è¡¨æ–‡ä»¶çš„ä¸€è¡Œ
 	
-	if (isempty(line))			%ÅĞ¶ÏÊÇ·ñ¶Áµ½¿ÕĞĞ£¬ÈôÊÇÌø¹ı¸ÃĞĞ£¬¿ªÊ¼ÏÂ¸öÑ­»·£¬¶ÁÈ¡ÏÂÒ»ĞĞ£¬½øĞĞÅĞ¶Ï
-		continue;
+
+	ifï¼ˆisempty(line) || line(1)=='*')
+		continue; 				%å¦‚æœæ˜¯ç©ºè¡Œå’Œæ³¨é‡Šè¡Œï¼Œè·³è¿‡
 	end
 	
-	if (line(1)=='*')			%ÅĞ¶ÏÊÇ·ñ¶Áµ½×¢ÊÍĞĞ£¬ÈôÊÇÌø¹ı¸ÃĞĞ£¬¿ªÊ¼ÏÂ¸öÑ­»·£¬¶ÁÈ¡ÏÂÒ»ĞĞ£¬½øĞĞÅĞ¶Ï
-		continue;
-	end
-	
-	 line_element= regexp(line, '\s+', 'split'); %½«¸ÃĞĞ×Ö·û´®×ª»»³ÉÊı×é×é³ÉµÄCell£¬ÒÔ¿Õ¸ñÎª·Ö½çÏß
+	line_element= regexp(line, '\s+', 'split'); 	%ä»¥ç©ºæ ¼ä¸ºåˆ†ç•Œçº¿ï¼Œåˆ’åˆ†åŸä»¶
      
          
-	if (strcmpi(line_element{1}, '.SUBCKT'))		%ÅĞ¶ÏÊÇ·ñ½øÈë×ÓµçÂ·£¬ÓÃstrcnpi()º¯Êı¿ÉÒÔºöÂÔ´óĞ¡Ğ´½øĞĞ±È½Ï
-        subckt_flag=1;								%Èô½øÈë×ÓµçÂ·£¬Ôò±ê¼Çsubckt_flagÎª1
+	if (strcmpi(line_element{1}, '.SUBCKT'))		%
+        subckt_flag=1;								%
         subckt_n=subckt_n+1;
         i=1;
-        subckt_info{subckt_n}{i}=line_element;			%´æÈ¡±¾ĞĞ×ÓµçÂ·ÃèÊö	
+        subckt_info{subckt_n}{i}=line_element;			%
         i=i+1;
         continue;
 	end
 	
-	if (strcmpi(line_element{1}, '.ENDS'))			%ÅĞ¶ÏÊÇ·ñ¶Áµ½¸Ã×ÓµçÂ·µÄ½áÊø²¿·Ö
-		subckt_flag=0;								%ÈôÔÚ×ÓµçÂ·µÄ½áÊø²¿·Ö£¬Ôò±ê¼Çsubckt_flagÎª0
+	if (strcmpi(line_element{1}, '.ENDS'))			%
+		subckt_flag=0;								%
         continue;
 	end
 	
-	if (subckt_flag)								%Èç¹û±¾ĞĞÒÀÈ»ÊÇ×ÓµçÂ·µÄÃèÊö£¬Ôò±£´æ±¾ĞĞĞÅÏ¢
+	if (subckt_flag)								%
 		subckt_info{subckt_n}{i}=line_element; 
         i=i+1;
 	end
 
 end
-fprintf('´¦Àí×ÓµçÂ·ÒÑÍê³É¡£\n');
+fprintf('å­ç”µè·¯ <<%s>> å¤„ç†å®Œæˆ\n', benchmark);
 fclose(netlist)	;

@@ -1,40 +1,40 @@
-%Êä³ö¸÷Ï¡Êè¾ØÕóÒÔ¼°±¨¸æ
-%ÔËĞĞ¹ı³ÌºÍ×îºó½á¹ûÓÃÏ¡Êè¾ØÕó´æ´¢£¬¸÷¾ØÕó¶¼¿ÉÒÔÍ¨¹ıÏàÓ¦µÄ.matÎÄ¼ş²é¿´
 
-if ~exist('results\')   %Èç¹ûresultÎÄ¼ş¼Ğ²»´æÔÚ£¬Ôò´´½¨ÎÄ¼ş¼Ğ£¬ÓÃÒÔ´æ·ÅC£¬G£¬B£¬U£¬X£¬Y¶ş½øÖÆÎÄ¼ş
-    mkdir('results'); 
-end                     %ÈôresultÎÄ¼ş¼Ğ´æÔÚ£¬ÔòÌø¹ı´´½¨ÎÄ¼ş¼Ğ²½Öè
+result = [benchmark, '.out']
+
+if ~exist(result)
+    mkdir(result); 
+end                     %åˆ¤æ–­æœ‰æ— resultæ–‡ä»¶å¤¹ï¼Œå¦‚æœæ²¡æœ‰åˆ™åˆ›å»ºã€‚
   
-X(1:node_LUT_num)=strcat('V(', X(1:node_LUT_num),')');    %XÏòÁ¿ÖĞµçÑ¹Á¿±êÉÏµçÑ¹·ûºÅ Èç V(node1) V(1)
-X(node_LUT_num+1:C_column_row)=strcat('I(', X(node_LUT_num+1:C_column_row),')');   %XÏòÁ¿ÖĞµçÁ÷Á¿±êÉÏµçÁ÷·ûºÅ Èç I(Vin) I(L1)
+X(1:node_LUT_num)=strcat('V(', X(1:node_LUT_num),')');    %Xï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ V(node1) V(1)
+X(node_LUT_num+1:C_column_row)=strcat('I(', X(node_LUT_num+1:C_column_row),')');   %Xï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ I(Vin) I(L1)
 
 
-fid=fopen('results\report.txt', 'w');
+fid=fopen(result, 'w');
 fprintf(fid,'** Matrix C (Size: %d x %d) **\n',C_column_row, C_column_row);
     fprintf(fid,'   This Matrix is too large. Please see results\\C.mat \n'); 
 fclose(fid);
 
-fid=fopen('results\report.txt', 'a');
-fprintf(fid,'\n** Matrix G (Size: %d x %d) **\n',G_column_row, G_column_row);        %´òÓ¡¾ØÕóGµ½ÎÄ±¾
+fid=fopen(result, 'a');
+fprintf(fid,'\n** Matrix G (Size: %d x %d) **\n',G_column_row, G_column_row);        %ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½Ä±ï¿½
     fprintf(fid,'   This Matrix is too large. Please see results\\G.mat  \n'); 
 fclose(fid);
 
-fid=fopen('results\report.txt', 'a');
-fprintf(fid,'\n** Matrix B (Size: %d x %d) **\n',B_column, B_row);       %´òÓ¡¾ØÕóBµ½ÎÄ±¾
+fid=fopen(result, 'a');
+fprintf(fid,'\n** Matrix B (Size: %d x %d) **\n',B_column, B_row);       %ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½Ä±ï¿½
     fprintf(fid,'   This Matrix is too large. Please see results\\B.mat  \n'); 
 fclose(fid);
 
-fid=fopen('results\report.txt', 'a');
-fprintf(fid,'\n** Matrix LT (Size: %d x %d) **\n',LT_column, LT_row);         %´òÓ¡¾ØÕóLTµ½ÎÄ±¾
+fid=fopen(result, 'a');
+fprintf(fid,'\n** Matrix LT (Size: %d x %d) **\n',LT_column, LT_row);         %ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½LTï¿½ï¿½ï¿½Ä±ï¿½
     fprintf(fid,'   This Matrix is too large. Please see results\\LT.mat  \n');
 fclose(fid);
 
-fid=fopen('results\report.txt', 'a');                                                       
+fid=fopen(result, 'a');                                                       
 fprintf(fid,'\n** Vector X (Size: %d x %d) **\n',C_column_row, 1);
 if(C_column_row<20)
     n=1;
     while n<=C_column_row
-        fprintf(fid,'  %s', X{n});         %´òÓ¡ÏòÁ¿Xµ½ÎÄ±¾
+        fprintf(fid,'  %s', X{n});         %ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Ä±ï¿½
         n=n+1;
     end
 else
@@ -45,7 +45,7 @@ fprintf(fid,'\n\n** Vector Y (Size: %d x %d) **\n',quest_num, 1);
 if(quest_num<20)
     n=1;
     while n<=quest_num
-        fprintf(fid,'  %s', Y{n});      %´òÓ¡ÏòÁ¿Yµ½ÎÄ±¾
+        fprintf(fid,'  %s', Y{n});      %ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½Yï¿½ï¿½ï¿½Ä±ï¿½
         n=n+1;
     end
 else
@@ -56,26 +56,26 @@ fprintf(fid,'\n\n** Vector U (Size: %d x %d) **\n',B_row, 1);
 if(B_row<20)
     n=1;
     while n<=source_num
-        fprintf(fid,'  %s', U{n});          %´òÓ¡ÏòÁ¿Uµ½ÎÄ±¾
+        fprintf(fid,'  %s', U{n});          %ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½Ä±ï¿½
         n=n+1;
     end
 else
     fprintf(fid,'  This Vector is too large. Please see results\\U.mat  \n'); 
 end
 
-save results\C.mat C;           %´æ´¢Ï¡Êè¾ØÕóC
+save [results, '\C.mat']  C;           %ï¿½æ´¢Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½C
 
-save results\G.mat G;           %´æ´¢Ï¡Êè¾ØÕóG
+save [results, '\G.mat'] G;           %ï¿½æ´¢Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½G
 
-save results\B.mat B;           %´æ´¢Ï¡Êè¾ØÕóB
+save [results, '\B.mat'] B;           %ï¿½æ´¢Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½B
 
-save results\LT.mat LT;         %´æ´¢Ï¡Êè¾ØÕóLT 
+save [results, '\LT.mat'] LT;         %ï¿½æ´¢Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½LT 
 
-X=X';                           %½«XÏòÁ¿×ªÎªÁĞÏòÁ¿´æ´¢
-Y=Y';                           %½«YÏòÁ¿×ªÎªÁĞÏòÁ¿´æ´¢
-save results\X.mat X;           %´æ´¢ÏòÁ¿X
-save results\Y.mat Y;           %´æ´¢ÏòÁ¿Y
-save results\U.mat U;           %´æ´¢ÏòÁ¿U
-fprintf('ÒÑµÃµ½MNA·½³Ì¸÷¾ØÕó£¬±£´æÔÚresultÎÄ¼ş¼ĞÏÂ¡£\n');
+X=X';                           %ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½×ªÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ´¢
+Y=Y';                           %ï¿½ï¿½Yï¿½ï¿½ï¿½ï¿½×ªÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ´¢
+save [results, '\X.mat'] X;           %ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½X
+save [results, '\Y.mat'] Y;           %ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½Y
+save [results, '\U.mat'] U;           %ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½U
+fprintf('å¾—åˆ°mnaæ–¹ç¨‹\n');
 fclose(fid);
 

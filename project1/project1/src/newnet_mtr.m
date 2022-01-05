@@ -1,14 +1,14 @@
-%Êä³ö¸÷¾ØÕó
+%ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 line_num=1;
-line_num_total=size(net,2);         %Íø±íÃèÊö×Ü¸öÊı
-node_LUT_num=size(node_LUT,2);      %½Úµã²éÕÒ±íÖĞµÄ×Ü½ÚµãÊı
+line_num_total=size(net,2);         %ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¸ï¿½ï¿½ï¿½
+node_LUT_num=size(node_LUT,2);      %ï¿½Úµï¿½ï¿½ï¿½Ò±ï¿½ï¿½Ğµï¿½ï¿½Ü½Úµï¿½ï¿½ï¿½
 L_num=0;
 V_num=0;
 I_num=0;
 E_num=0;
 H_num=0;
 
-while line_num<=line_num_total      %Í³¼Æµç¸Ğ¡¢µçÑ¹Ô´¡¢µçÁ÷Ô´µÄÊıÁ¿£¬ÓÃÀ´³õÊ¼»¯¸÷¾ØÕó
+while line_num<=line_num_total      %Í³ï¿½Æµï¿½Ğ¡ï¿½ï¿½ï¿½Ñ¹Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	switch upper(net{line_num}{1}(1))
 		case('L')
 			L_num=L_num+1;
@@ -25,31 +25,31 @@ while line_num<=line_num_total      %Í³¼Æµç¸Ğ¡¢µçÑ¹Ô´¡¢µçÁ÷Ô´µÄÊıÁ¿£¬ÓÃÀ´³õÊ¼»¯¸
 	line_num=line_num+1;
 end
 
-C_column_row=node_LUT_num+L_num+V_num+E_num+H_num;  %ÉèÖÃC¾ØÕóµÄĞĞºÍÁĞµÄÖµ
-G_column_row=C_column_row;                          %ÉèÖÃC¾ØÕóµÄĞĞºÍÁĞµÄÖµ
-B_column=C_column_row;                              %ÉèÖÃB¾ØÕóµÄĞĞµÄÖµ
-B_row=V_num+I_num;                                  %ÉèÖÃB¾ØÕóµÄÁĞµÄÖµ
-LT_column=quest_num;                                %ÉèÖÃLT¾ØÕóµÄĞĞµÄÖµ
-LT_row=C_column_row;                                %ÉèÖÃLT¾ØÕóµÄÁĞµÄÖµ
+C_column_row=node_LUT_num+L_num+V_num+E_num+H_num;  %ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğºï¿½ï¿½Ğµï¿½Öµ
+G_column_row=C_column_row;                          %ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğºï¿½ï¿½Ğµï¿½Öµ
+B_column=C_column_row;                              %ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½Öµ
+B_row=V_num+I_num;                                  %ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½Öµ
+LT_column=quest_num;                                %ï¿½ï¿½ï¿½ï¿½LTï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½Öµ
+LT_row=C_column_row;                                %ï¿½ï¿½ï¿½ï¿½LTï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½Öµ
 
-C=sparse(C_column_row,C_column_row,0);              %³õÊ¼»¯C¾ØÕó£¬ÒÔÏ¡Êè¾ØÕó´æ´¢
-G=sparse(G_column_row,G_column_row,0);              %³õÊ¼»¯G¾ØÕó£¬ÒÔÏ¡Êè¾ØÕó´æ´¢
-X=node_LUT;                                         %³õÊ¼»¯XÏòÁ¿£¬ÒÔÏ¡Êè¾ØÕó´æ´¢£¬Ö»°üº¬µçÑ¹Á¿£¬µçÁ÷Á¿(ÓÉ¶ÀÁ¢µçÑ¹Ô´£¬VCVS CCVS µç¸Ğ²úÉú£©ÔÚÖ®ºóÒÀ´Î²åÈë
-B=sparse(C_column_row,B_row,0);                     %³õÊ¼»¯B¾ØÕó£¬ÒÔÏ¡Êè¾ØÕó´æ´¢
-LT=sparse(LT_column,LT_row,0);                      %³õÊ¼»¯LT¾ØÕó£¬ÒÔÏ¡Êè¾ØÕó´æ´¢
+C=sparse(C_column_row,C_column_row,0);              %ï¿½ï¿½Ê¼ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½æ´¢
+G=sparse(G_column_row,G_column_row,0);              %ï¿½ï¿½Ê¼ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½æ´¢
+X=node_LUT;                                         %ï¿½ï¿½Ê¼ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½æ´¢ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹Ô´ï¿½ï¿½VCVS CCVS ï¿½ï¿½Ğ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½Î²ï¿½ï¿½ï¿½
+B=sparse(C_column_row,B_row,0);                     %ï¿½ï¿½Ê¼ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½æ´¢
+LT=sparse(LT_column,LT_row,0);                      %ï¿½ï¿½Ê¼ï¿½ï¿½LTï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½æ´¢
 
 line_num=1;         
-X_insert_num=0;                                     %±íÊ¾ÒÑ¾­²åÈëXÏòÁ¿µÄµçÁ÷Á¿
-source_num=0;                                       %±íÊ¾ÒÑ¾­²åÈëUÏòÁ¿µÄ¶ÀÁ¢Ô´ÊıÄ¿
+X_insert_num=0;                                     %ï¿½ï¿½Ê¾ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½
+source_num=0;                                       %ï¿½ï¿½Ê¾ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½Ô´ï¿½ï¿½Ä¿
 while line_num<=line_num_total
 	
 	
-	switch upper(net{line_num}{1}(1))               %½«×Ö·û´®×ª»¯Îª´óĞ´ĞÎÊ½±È½Ï£¬ÒÔ´ËºöÂÔ´óĞ¡Ğ´
-		case('R')                                   %Èç¹ûÔª¼şÊÇµç×è£¬Ôò°´ÒÔÏÂ·½·¨´¦Àí
+	switch upper(net{line_num}{1}(1))               %ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½×ªï¿½ï¿½Îªï¿½ï¿½Ğ´ï¿½ï¿½Ê½ï¿½È½Ï£ï¿½ï¿½Ô´Ëºï¿½ï¿½Ô´ï¿½Ğ¡Ğ´
+		case('R')                                   %ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½Çµï¿½ï¿½è£¬ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             value=net{line_num}{4};
-			if(node1==0||node2==0)                  %¸üĞÂG¾ØÕó
+			if(node1==0||node2==0)                  %ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½
 				node_add=node1+node2;
 				G(node_add,node_add)=G(node_add,node_add)+1/value;
 			else
@@ -58,11 +58,11 @@ while line_num<=line_num_total
 				G(node1,node2)=G(node1,node2)-1/value;
 				G(node2,node1)=G(node2,node1)-1/value;
 			end
-		case('C')                                   %Èç¹ûÔª¼şÊÇµçÈİ£¬Ôò°´ÒÔÏÂ·½·¨´¦Àí
+		case('C')                                   %ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½Çµï¿½ï¿½İ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             value=net{line_num}{4};
-			if(node1==0||node2==0)                  %¸üĞÂC¾ØÕó
+			if(node1==0||node2==0)                  %ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½
 				node_add=node1+node2;               
 				C(node_add,node_add)=C(node_add,node_add)+value;
 			else
@@ -71,15 +71,15 @@ while line_num<=line_num_total
 				C(node1,node2)=C(node1,node2)-value;
 				C(node2,node1)=C(node2,node1)-value;
 			end
-		case('L')                                   %Èç¹ûÔª¼şÊÇµç¸Ğ£¬Ôò°´ÒÔÏÂ·½·¨´¦Àí
+		case('L')                                   %ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½Çµï¿½Ğ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             value=net{line_num}{4};
 			X_insert_num=X_insert_num+1;
 			node_add=node_LUT_num+X_insert_num;
-			X{node_add}=net{line_num}{1};           %ÔÚXÏòÁ¿ÖĞ²åÈëLÉÏµÄµçÁ÷Ãû³Æ£¨ÆäÊµ²åÈëµÄÊÇLµÄÔª¼şÃû£¬ÔÚoutput.mÖĞ»á¼ÓÉÏµçÁ÷±êÇ©£¬ÈçI(L1)£©
+			X{node_add}=net{line_num}{1};           %ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½Ğ²ï¿½ï¿½ï¿½Lï¿½ÏµÄµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½output.mï¿½Ğ»ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½Ç©ï¿½ï¿½ï¿½ï¿½I(L1)ï¿½ï¿½
 			C(node_add,node_add)=value;
-			if (node1==0)                           %¸üĞÂG¾ØÕó
+			if (node1==0)                           %ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½
 			
 			else
 				G(node_add,node1)=-1;
@@ -92,17 +92,17 @@ while line_num<=line_num_total
 				G(node_add,node2)=1;
 				G(node2,node_add)=-1;
 			end
-		case('V')                                   %Èç¹ûÔª¼şÊÇ¶ÀÁ¢µçÑ¹Ô´£¬Ôò°´ÒÔÏÂ·½·¨´¦Àí
+		case('V')                                   %ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½Ç¶ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             value=net{line_num}{4};
 			source_num=source_num+1;
-			U{source_num}=net{line_num}{1};         %½«¶ÀÁ¢µçÑ¹Ô´²åÈëµ½UÏòÁ¿ÖĞ
+			U{source_num}=net{line_num}{1};         %ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹Ô´ï¿½ï¿½ï¿½ëµ½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			X_insert_num=X_insert_num+1;
 			node_add=node_LUT_num+X_insert_num;
-			X{node_add}=net{line_num}{1};           %ÔÚXÏòÁ¿ÖĞ²åÈëVÉÏµÄµçÁ÷Ãû³Æ£¨ÆäÊµ²åÈëµÄÊÇVµÄÔª¼şÃû£¬ÔÚoutput.mÖĞ»á¼ÓÉÏµçÁ÷±êÇ©£¬ÈçI(V1)£©
-			B(node_add,source_num)=1;               %¸üĞÂB¾ØÕó
-			if (node1==0)                           %¸üĞÂG¾ØÕó
+			X{node_add}=net{line_num}{1};           %ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½Ğ²ï¿½ï¿½ï¿½Vï¿½ÏµÄµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Vï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½output.mï¿½Ğ»ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½Ç©ï¿½ï¿½ï¿½ï¿½I(V1)ï¿½ï¿½
+			B(node_add,source_num)=1;               %ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½
+			if (node1==0)                           %ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½
 			
 			else
 				G(node_add,node1)=1;
@@ -115,13 +115,13 @@ while line_num<=line_num_total
 				G(node_add,node2)=-1;
 				G(node2,node_add)=1;
 			end
-		case('I')                                   %Èç¹ûÔª¼şÊÇ¶ÀÁ¢µçÁ÷Ô´£¬Ôò°´ÒÔÏÂ·½·¨´¦Àí
+		case('I')                                   %ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½Ç¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             value=net{line_num}{4};
 			source_num=source_num+1;
-			U{source_num}=net{line_num}{1};         %½«¶ÀÁ¢µçÁ÷Ô´²åÈëµ½UÏòÁ¿ÖĞ
-			if (node1==0)                           %¸üĞÂB¾ØÕó
+			U{source_num}=net{line_num}{1};         %ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ëµ½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			if (node1==0)                           %ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½
 			
             else
                 B(node1,source)=-1;
@@ -132,10 +132,10 @@ while line_num<=line_num_total
             else
 				B(node2,source)=1;
 			end
-		case('K')                                   %Èç¹ûÔª¼şÊÇ»¥¸Ğ£¬Ôò°´ÒÔÏÂ·½·¨´¦Àí
+		case('K')                                   %ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½Ç»ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             value=net{line_num}{4};
 			L_order=1;
-			while L_order<=2                        %ÒÀ´ÎÕÒµ½²úÉú»¥¸ĞµÄ2¸öµç¸ĞµÄÎ»ÖÃ
+			while L_order<=2                        %ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½2ï¿½ï¿½ï¿½ï¿½Ğµï¿½Î»ï¿½ï¿½
 				n=node_LUT_num+1;
 				while n<=size(X,2)
 					if (strcmpi(net{line_num}{L_order+1},X{n}))
@@ -145,9 +145,9 @@ while line_num<=line_num_total
 					end
 				end
 				
-				if (n<=size(X,2))                   %Èç¹ûµç¸ĞÒÑ¾­±»´¦Àí¹ı£¬¼´µç¸ĞĞÅÏ¢ÒÑ¾­´æÈë¸÷¾ØÕóÖĞ           
-					L_n(L_order)=n;                 %±£´æ¸Ãµç¸ĞµÄÎ»ÖÃ
-                else                                %Èç¹ûµç¸Ğ»¹Ã»±»´¦Àí¹ı£¬ÔòÔÚÎ´´¦Àí¹ıµÄÍø±íĞÅÏ¢ÖĞÑ°ÕÒ¸Ãµç¸Ğ²¢´¦Àí
+				if (n<=size(X,2))                   %ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½           
+					L_n(L_order)=n;                 %ï¿½ï¿½ï¿½ï¿½Ãµï¿½Ğµï¿½Î»ï¿½ï¿½
+                else                                %ï¿½ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ñ°ï¿½Ò¸Ãµï¿½Ğ²ï¿½ï¿½ï¿½ï¿½ï¿½
 					X_insert_num=X_insert_num+1;
 					node_add=node_LUT_num+X_insert_num;					
 					n=line_num+1;
@@ -158,7 +158,7 @@ while line_num<=line_num_total
 							n=n+1;
 						end
 					end
-					C(node_add,node_add)=net{n}{4};     %ÕÒµ½µç¸Ğ£¬¸üĞÂC¾ØÕóºÍG¾ØÕó
+					C(node_add,node_add)=net{n}{4};     %ï¿½Òµï¿½ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½
 					node1=net{n}{2};
 					node2=net{n}{3};
 					if (node1==0)
@@ -174,15 +174,15 @@ while line_num<=line_num_total
 						G(node_add,node2)=1;
 						G(node2,node_add)=-1;
 					end
-					X{node_add}=net{n}{1};              %ÓÉÓÚÊÇµç¸Ğ£¬Òò´ËÈçÖ®Ç°´¦Àíµç¸ĞµÄ²¿·ÖÏàÍ¬£¬Òª¸üĞÂXÏòÁ¿ÖĞµÄĞÅÏ¢
-					net{n}{1}='_Ready';                 %ÓÉÓÚËÑË÷µ½µÄµç¸ĞÒÑ¾­±»´¦Àí£¬Òò´Ë±ê¼Ç¸Ãµç¸ĞµÄÍø±íĞÅÏ¢£¬±ÜÃâÖØ¸´´¦Àí¡£ÔÚ _Ready±êÏÂ»®Ïß"_"ÊÇÎªÁË±ÜÃâµ±×öµç×è´¦Àí
-					L_n(L_order)=node_add;              %±£´æ¸Ãµç¸ĞµÄÎ»ÖÃ
+					X{node_add}=net{n}{1};              %ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½Ğ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ĞµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½ï¿½ï¿½Ï¢
+					net{n}{1}='_Ready';                 %ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë±ï¿½Ç¸Ãµï¿½Ğµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ _Readyï¿½ï¿½ï¿½Â»ï¿½ï¿½ï¿½"_"ï¿½ï¿½Îªï¿½Ë±ï¿½ï¿½âµ±ï¿½ï¿½ï¿½ï¿½ï¿½è´¦ï¿½ï¿½
+					L_n(L_order)=node_add;              %ï¿½ï¿½ï¿½ï¿½Ãµï¿½Ğµï¿½Î»ï¿½ï¿½
 				end
-				L_order=L_order+1;                      %´¦ÀíÏÂÒ»¸öµç¸Ğ
+				L_order=L_order+1;                      %ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½
 			end
-			C(L_n(1),L_n(2))=-value*sqrt(C(L_n(1),L_n(1))*C(L_n(2),L_n(2)));        %¸ù¾İÒÑµÃµ½µÄ2µç¸ĞÎ»ÖÃĞÅÏ¢½«»¥¸ĞÏµÊı¸üĞÂµ½C¾ØÕóÖĞ
+			C(L_n(1),L_n(2))=-value*sqrt(C(L_n(1),L_n(1))*C(L_n(2),L_n(2)));        %ï¿½ï¿½ï¿½ï¿½ï¿½ÑµÃµï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			C(L_n(2),L_n(1))=C(L_n(1),L_n(2));
-        case('E')                                       %Èç¹ûÊÇÑ¹¿ØµçÑ¹Ô´VCVS
+        case('E')                                       %ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹ï¿½Øµï¿½Ñ¹Ô´VCVS
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             node3=net{line_num}{4};
@@ -190,9 +190,9 @@ while line_num<=line_num_total
             value=net{line_num}{6};
 			X_insert_num=X_insert_num+1;
 			node_add=node_LUT_num+X_insert_num;
-			X{node_add}=net{line_num}{1};               %½²ÊÜ¿ØµçÑ¹Ô´µçÁ÷ĞÅÏ¢¸üĞÂµ½ÏòÁ¿X£¨ÆäÊµ²åÈëµÄÊÇEµÄÔª¼şÃû£¬ÔÚoutput.mÖĞ»á¼ÓÉÏµçÁ÷±êÇ©£¬ÈçI(E1)£©
+			X{node_add}=net{line_num}{1};               %ï¿½ï¿½ï¿½Ü¿Øµï¿½Ñ¹Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½output.mï¿½Ğ»ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½Ç©ï¿½ï¿½ï¿½ï¿½I(E1)ï¿½ï¿½
 
-			if (node1==0)                               %¸üĞÂG¾ØÕó
+			if (node1==0)                               %ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½
 			
 			else
 				G(node_add,node1)=G(node_add,node1)+1;
@@ -218,14 +218,14 @@ while line_num<=line_num_total
 				G(node_add,node4)=G(node_add,node4)+value;
             end
             
-        case('G')                                       %Èç¹ûÊÇÑ¹¿ØµçÁ÷Ô´VCCS
+        case('G')                                       %ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹ï¿½Øµï¿½ï¿½ï¿½Ô´VCCS
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             node3=net{line_num}{4};
             node4=net{line_num}{5};
             value=net{line_num}{6};
             
-			if (node1==0||node3==0)                     %¸üĞÂG¾ØÕó
+			if (node1==0||node3==0)                     %ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½
 			
 			else
 				G(node1,node3)=G(node1,node3)+value;
@@ -249,10 +249,10 @@ while line_num<=line_num_total
 				G(node2,node4)=G(node2,node4)+value;
             end
             
-        case('H')                                       %Èç¹ûÊÇÁ÷¿ØµçÑ¹Ô´CCVS
+        case('H')                                       %ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½Ñ¹Ô´CCVS
             n=node_LUT_num+1;
-            V_ctrl=net{line_num}{4};                    %ÌáÈ¡²úÉú¿ØÖÆµçÁ÷µÄµçÑ¹Ô´µ½V_ctrl
-            while n<=size(X,2)                          %È·¶¨¸ÃµçÑ¹Ô´µÄÎ»ÖÃ£¬Èç¹ûÔÚXÏòÁ¿ÖĞÃ»ÓĞÕÒµ½£¬ËµÃ÷¸ÃµçÑ¹Ô´µÄĞÅÏ¢»¹Ã»´¦Àí£¬ÔòÔÚÎ´´¦ÀíµÄÍø±íĞÅÏ¢ÖĞÑ°ÕÒ¸ÃµçÑ¹Ô´
+            V_ctrl=net{line_num}{4};                    %ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½Äµï¿½Ñ¹Ô´ï¿½ï¿½V_ctrl
+            while n<=size(X,2)                          %È·ï¿½ï¿½ï¿½Ãµï¿½Ñ¹Ô´ï¿½ï¿½Î»ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½Ãµï¿½Ñ¹Ô´ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ñ°ï¿½Ò¸Ãµï¿½Ñ¹Ô´
                 if (strcmpi(V_ctrl,X{n}))
                     break
                 else
@@ -262,7 +262,7 @@ while line_num<=line_num_total
 
             if (n<=size(X,2))
                 V_match=n;
-            else                                        %¸ÃµçÑ¹Ô´µÄĞÅÏ¢»¹Ã»´¦Àí£¬ÔÚÎ´´¦ÀíµÄÍø±íĞÅÏ¢ÖĞÑ°ÕÒ¸ÃµçÑ¹Ô´¡£ÕÒµ½Ö®ºó£¬°´ÕÕÖ®Ç°´¦ÀíµçÑ¹Ô´µÄ²¿·ÖÏàÍ¬µÄ·½·¨´¦ÀíµçÑ¹Ô´ĞÅÏ¢
+            else                                        %ï¿½Ãµï¿½Ñ¹Ô´ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ñ°ï¿½Ò¸Ãµï¿½Ñ¹Ô´ï¿½ï¿½ï¿½Òµï¿½Ö®ï¿½ó£¬°ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹Ô´ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹Ô´ï¿½ï¿½Ï¢
                 X_insert_num=X_insert_num+1;
                 node_add=node_LUT_num+X_insert_num;
                 n=line_num+1;
@@ -276,11 +276,11 @@ while line_num<=line_num_total
                 node1=net{n}{2};
                 node2=net{n}{3};
                 value=net{n}{4};          
-                X{node_add}=net{n}{1};                  %½«µçÑ¹Ô´ĞÅÏ¢¸üĞÂµ½XÏòÁ¿        
+                X{node_add}=net{n}{1};                  %ï¿½ï¿½ï¿½ï¿½Ñ¹Ô´ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Âµï¿½Xï¿½ï¿½ï¿½ï¿½        
                 source_num=source_num+1;
-                U{source_num}=net{n}{1};                %½«µçÑ¹Ô´ĞÅÏ¢¸üĞÂµ½UÏòÁ¿  
-                B(node_add,source_num)=1;               %½«µçÑ¹Ô´ĞÅÏ¢¸üĞÂµ½B¾ØÕó
-                if (node1==0)                           %½«µçÑ¹Ô´ĞÅÏ¢¸üĞÂµ½G¾ØÕó 
+                U{source_num}=net{n}{1};                %ï¿½ï¿½ï¿½ï¿½Ñ¹Ô´ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Âµï¿½Uï¿½ï¿½ï¿½ï¿½  
+                B(node_add,source_num)=1;               %ï¿½ï¿½ï¿½ï¿½Ñ¹Ô´ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Âµï¿½Bï¿½ï¿½ï¿½ï¿½
+                if (node1==0)                           %ï¿½ï¿½ï¿½ï¿½Ñ¹Ô´ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Âµï¿½Gï¿½ï¿½ï¿½ï¿½ 
 
                 else
                     G(node_add,node1)=1;
@@ -294,16 +294,16 @@ while line_num<=line_num_total
                     G(node2,node_add)=1;
                 end
                 V_match=node_add;
-                net{n}{1}='_Ready';                     %±ê¼Ç¸üĞÂºóµÄµçÑ¹Ô´£¬±ÜÃâÖ®ºó±»´¦Àí
+                net{n}{1}='_Ready';                     %ï¿½ï¿½Ç¸ï¿½ï¿½Âºï¿½Äµï¿½Ñ¹Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ó±»´ï¿½ï¿½ï¿½
             end         
             node1=net{line_num}{2};
             node2=net{line_num}{3};        
             value=net{line_num}{5};       
 			X_insert_num=X_insert_num+1;
 			node_add=node_LUT_num+X_insert_num;
-			X{node_add}=net{line_num}{1};               %½«ÊÜ¿ØÔ´µÄĞÅÏ¢¸üĞÂµ½XÏòÁ¿
+			X{node_add}=net{line_num}{1};               %ï¿½ï¿½ï¿½Ü¿ï¿½Ô´ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Âµï¿½Xï¿½ï¿½ï¿½ï¿½
 
-            if (node1==0)                               %½«ÊÜ¿ØÔ´µÄĞÅÏ¢¸üĞÂµ½G¾ØÕó
+            if (node1==0)                               %ï¿½ï¿½ï¿½Ü¿ï¿½Ô´ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Âµï¿½Gï¿½ï¿½ï¿½ï¿½
 			
             else
 				G(node1,node_add)=G(node1,node_add)+1;
@@ -333,9 +333,9 @@ while line_num<=line_num_total
 				G(V_match,V_match)=G(V_match,V_match)-value;
             end
             
-        case('F')                                       %Èç¹ûÊÇÁ÷¿ØµçÁ÷Ô´CCCS
+        case('F')                                       %ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Ô´CCCS
             n=node_LUT_num+1;
-            V_ctrl=net{line_num}{4};                    %ÌáÈ¡²úÉú¿ØÖÆµçÁ÷µÄµçÑ¹Ô´µ½V_ctrl
+            V_ctrl=net{line_num}{4};                    %ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½Äµï¿½Ñ¹Ô´ï¿½ï¿½V_ctrl
             while n<=size(X,2)              
                 if (strcmpi(V_ctrl,X{n}))
                     break
@@ -381,11 +381,11 @@ while line_num<=line_num_total
                 V_match=node_add;
                 net{n}{1}='_Ready';
             end         
-            node1=net{line_num}{2};             %ÕÒµ½µçÑ¹Ô´Ö®ºó£¬½«ÊÜ¿ØÔ´µÄĞÅÏ¢¸üĞÂµ½¸÷¾ØÕó
+            node1=net{line_num}{2};             %ï¿½Òµï¿½ï¿½ï¿½Ñ¹Ô´Ö®ï¿½ó£¬½ï¿½ï¿½Ü¿ï¿½Ô´ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             node2=net{line_num}{3};
             value=net{line_num}{5};
                       
-            if (node1==0||V_match==0)           %¸ù¾İCCCSµÄÍø±íÃèÊö¸üĞÂG¾ØÕó
+            if (node1==0||V_match==0)           %ï¿½ï¿½ï¿½ï¿½CCCSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½
 			
 			else
 				G(node1,V_match)=G(node1,V_match)+value;
@@ -406,23 +406,23 @@ quest_order=1;
 while quest_i<=quest_line 
     quest_n=1;
     while quest_n<=size(quest{quest_line},2)-1                            
-        Y{quest_order}=quest{quest_i}{quest_n+1};                   %½«´ı²âĞÅÏ¢¸üĞÂµ½YÏòÁ¿ÖĞ
-        quest_node=Y{quest_order}(3:end-1);                         %Îª·½±ã±È½Ï£¬½«V()»òI()ÍÑÈ¥£¬±ä³Éµ¥½Úµã
-        if (strcmpi(Y{quest_order}(1), 'V'))                        %Èç¹ûÊÇ´ı²âÖµÊÇµçÑ¹£¬Õß°´ÈçÏÂ´¦Àí
+        Y{quest_order}=quest{quest_i}{quest_n+1};                   %ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Âµï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        quest_node=Y{quest_order}(3:end-1);                         %Îªï¿½ï¿½ï¿½ï¿½È½Ï£ï¿½ï¿½ï¿½V()ï¿½ï¿½I()ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½Úµï¿½
+        if (strcmpi(Y{quest_order}(1), 'V'))                        %ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ï¿½ï¿½Öµï¿½Çµï¿½Ñ¹ï¿½ï¿½ï¿½ß°ï¿½ï¿½ï¿½ï¿½Â´ï¿½ï¿½ï¿½
             m=1;
             while m<=node_LUT_num
                 if (strcmpi(quest_node,X{m}))                   
-                    LT(quest_order,m)=1;                            %¸üĞÂLT¾ØÕó
+                    LT(quest_order,m)=1;                            %ï¿½ï¿½ï¿½ï¿½LTï¿½ï¿½ï¿½ï¿½
                     break
                 end
                 m=m+1;
             end
         else
-            if (strcmpi(Y{quest_order}(1), 'I'))                    %Èç¹ûÊÇ´ı²âÖµÊÇµçÁ÷£¬Õß°´ÈçÏÂ´¦Àí           
+            if (strcmpi(Y{quest_order}(1), 'I'))                    %ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ï¿½ï¿½Öµï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½ï¿½ï¿½ï¿½Â´ï¿½ï¿½ï¿½           
                 m=node_LUT_num+1;
                 while m<=size(X,2)
                     if (strcmpi(quest_node,X{m}))
-                        LT(quest_order,m)=1;                        %¸üĞÂLT¾ØÕó
+                        LT(quest_order,m)=1;                        %ï¿½ï¿½ï¿½ï¿½LTï¿½ï¿½ï¿½ï¿½
                         break
                     end
                     m=m+1;
@@ -434,4 +434,4 @@ while quest_i<=quest_line
     end
     quest_i=quest_i+1;
 end
-fprintf('´¦Àí¸÷Ôª¼şÒÑÍê³É¡£\n');
+fprintf('å¤„ç†å„å…ƒä»¶\n');
