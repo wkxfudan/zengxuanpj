@@ -81,16 +81,12 @@ while line_num<=line_num_total
 			node_add=node_LUT_num+X_insert_num;
 			X{node_add}=net{line_num}{1};           
 			C(node_add,node_add)=value;
-			if (node1==0)                          
-			
-			else
+			if (node1~=0)                          
 				G(node_add,node1)=-1;
 				G(node1,node_add)=1;
 			end
 			
-			if (node2==0)
-			
-			else
+			if (node2~=0)
 				G(node_add,node2)=1;
 				G(node2,node_add)=-1;
 			end
@@ -104,16 +100,12 @@ while line_num<=line_num_total
 			node_add=node_LUT_num+X_insert_num;
 			X{node_add}=net{line_num}{1};           
 			B(node_add,source_num)=1;               
-			if (node1==0)                          
-			
-			else
+			if (node1~=0)                          
 				G(node_add,node1)=1;
 				G(node1,node_add)=-1;
 			end
 			
-			if (node2==0)
-			
-			else
+			if (node2~=0)
 				G(node_add,node2)=-1;
 				G(node2,node_add)=1;
 			end
@@ -123,15 +115,11 @@ while line_num<=line_num_total
             value=net{line_num}{4};
 			source_num=source_num+1;
 			U{source_num}=net{line_num}{1};       
-			if (node1==0)                        
-			
-            else
+			if (node1~=0)                        
                 B(node1,source)=-1;
 			end
 			
-			if (node2==0)
-			
-            else
+			if (node2~=0)
 				B(node2,source)=1;
 			end
 		case('K')                                   %互感处理
@@ -163,16 +151,12 @@ while line_num<=line_num_total
 					C(node_add,node_add)=net{n}{4};     
 					node1=net{n}{2};
 					node2=net{n}{3};
-					if (node1==0)
-			
-					else
+					if (node1~=0)
 						G(node_add,node1)=-1;
 						G(node1,node_add)=1;
 					end
 					
-					if (node2==0)
-					
-					else
+					if (node2~=0)
 						G(node_add,node2)=1;
 						G(node2,node_add)=-1;
 					end
@@ -194,29 +178,21 @@ while line_num<=line_num_total
 			node_add=node_LUT_num+X_insert_num;
 			X{node_add}=net{line_num}{1};               
 
-			if (node1==0)                               
-			
-			else
+			if (node1~=0)                               
 				G(node_add,node1)=G(node_add,node1)+1;
 				G(node1,node_add)=G(node1,node_add)+1;
 			end
 			
-			if (node2==0)
-			
-			else
+			if (node2~=0)
 				G(node_add,node2)=G(node_add,node2)-1;
 				G(node2,node_add)=G(node2,node_add)-1;
             end
             
-            if (node3==0)
-			
-			else
+            if (node3~=0)
 				G(node_add,node3)=G(node_add,node3)-value;
 			end
 			
-			if (node4==0)
-			
-			else
+			if (node4~=0)
 				G(node_add,node4)=G(node_add,node4)+value;
             end
             
@@ -227,27 +203,19 @@ while line_num<=line_num_total
             node4=net{line_num}{5};
             value=net{line_num}{6};
             
-			if (node1==0||node3==0)                     
-			
-			else
+			if (node1~=0 && node3~=0)                     
 				G(node1,node3)=G(node1,node3)+value;
 			end
 			
-			if (node1==0||node4==0)
-			
-			else
+			if (node1~=0 && node4~=0)
 				G(node1,node4)=G(node1,node4)-value;
             end
             
-            if (node2==0||node3==0)
-			
-			else
+            if (node2~=0 && node3~=0)
 				G(node2,node3)=G(node2,node3)-value;
 			end
 			
-			if (node2==0||node4==0)
-			
-			else
+			if (node2~=0 && node4~=0)
 				G(node2,node4)=G(node2,node4)+value;
             end
             
@@ -282,16 +250,12 @@ while line_num<=line_num_total
                 source_num=source_num+1;
                 U{source_num}=net{n}{1};                 
                 B(node_add,source_num)=1;               
-                if (node1==0)                            
-
-                else
+                if (node1~=0)                            
                     G(node_add,node1)=1;
                     G(node1,node_add)=-1;
                 end
 
-                if (node2==0)
-
-                else
+                if (node2~=0)
                     G(node_add,node2)=-1;
                     G(node2,node_add)=1;
                 end
@@ -305,33 +269,23 @@ while line_num<=line_num_total
 			node_add=node_LUT_num+X_insert_num;
 			X{node_add}=net{line_num}{1};               
 
-            if (node1==0)                               
-			
-            else
+            if (node1~=0)                               
 				G(node1,node_add)=G(node1,node_add)+1;
 			end
 			
-			if (node2==0)
-			
-            else
+			if (node2~=0)
 				G(node2,node_add)=G(node2,node_add)-1;
             end
             
-            if (node1==0||V_match==0)
-			
-			else
+            if (node1~=0 && V_match~=0)
 				G(V_match,node1)=G(V_match,node1)+1;
 			end
 			
-			if (node2==0||V_match==0)
-			
-			else
+			if (node2~=0 && V_match~=0)
 				G(V_match,node2)=G(V_match,node2)-1;
             end
             
-            if (V_match==0)
-			
-            else
+            if (V_match~=0)
 				G(V_match,V_match)=G(V_match,V_match)-value;
             end
             
@@ -367,16 +321,12 @@ while line_num<=line_num_total
                 U{source_num}=net{n}{1};          
                 X{node_add}=net{n}{1};
                 B(node_add,source_num)=1;
-                if (node1==0)
-
-                else
+                if (node1~=0)
                     G(node_add,node1)=1;
                     G(node1,node_add)=-1;
                 end
 
-                if (node2==0)
-
-                else
+                if (node2~=0)
                     G(node_add,node2)=-1;
                     G(node2,node_add)=1;
                 end
@@ -387,15 +337,11 @@ while line_num<=line_num_total
             node2=net{line_num}{3};
             value=net{line_num}{5};
                       
-            if (node1==0||V_match==0)           
-			
-			else
+            if (node1~=0 && V_match~=0)           
 				G(node1,V_match)=G(node1,V_match)+value;
 			end
 			
-			if (node2==0||V_match==0)
-			
-			else
+			if (node2~=0 && V_match~=0)
 				G(node2,V_match)=G(node2,V_match)-value;
             end
         
