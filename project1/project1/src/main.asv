@@ -4,10 +4,8 @@ clear all;
 benchmarks=fopen('filelist.f');         %打开benchmark文件路径，请在该文件中
 
 while ~feof(benchmarks)                 %读取按行读取benchmark文件
-    clearvars -except benchmarks;
     benchmark   = fgetl(benchmarks);
-
-    if (isempty(benchmarks) || benchmark(1)=='#')     %如果是空行和注释行，说明不是一个benchmark文件
+    if (isempty(line) || benchmark(1)=='#')     %如果是空行和注释行，说明不是一个benchmark文件
         continue;
     end
 
@@ -29,12 +27,8 @@ while ~feof(benchmarks)                 %读取按行读取benchmark文件
     node_num
     matrix_gen
     output
-    fprintf('电路 %s.sp 处理结束\n', benchmark);
-    fprintf('--------分隔符---------\n');
-
 
 end
 
-fclose(benchmarks);
 
 

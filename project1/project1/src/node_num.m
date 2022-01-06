@@ -1,12 +1,18 @@
 %将新网表中的节点数字化
-netlist=fopen(mapped_netlist);
+netlist=fopen(fullfile(output_dir, [benchmark, '.mapped.sp']));	 	%映射后网表文件
 node_LUT_num=0;			%初始化节点查找表中的节点数目为0，查找表中有的节点名称表示该节点已被数字化
 line_num=1;
 
 while ~feof(netlist)
 	line=fgetl(netlist);                                    %读取网表中的一行
+
+	%如果是空行和注释行，跳过
+	if(isempty(line) || line(1)=='*')
+		continue; 				
+	end
+
 	line_element=regexp(line,  '(\S)+', 'match');           %将本行各项非空内容存到line_element中
-    line_element_end_value=regexp(line_element{end},  '[\d]+[.]*[\d]*', 'match');     %matlab不能识别n,m,k等数量级，故做如下处理
+    line_element_end_value=regexp(line_element{end},  '[\d]+[.]*[\d]*', 'match');     %数量级转换
     line_element_end_power=regexp(line_element{end},  '([a-zA-Z])+', 'match');
     
     if ~isempty(line_element_end_power)
@@ -75,3 +81,4 @@ while ~feof(netlist)
 	line_num=line_num+1;		
 end
 fprintf('节点数字化\n');
+fclose(netlist);

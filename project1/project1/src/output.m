@@ -1,69 +1,66 @@
+%打印输出报告文件
+X(1:node_LUT_num)=strcat('V(', X(1:node_LUT_num),')');    
+X(node_LUT_num+1:C_col_row)=strcat('I(', X(node_LUT_num+1:C_col_row),')');   
 
-            %判断有无result文件夹，如果没有则创建。
-  
-X(1:node_LUT_num)=strcat('V(', X(1:node_LUT_num),')');    %X�����е�ѹ�����ϵ�ѹ���� �� V(node1) V(1)
-X(node_LUT_num+1:C_column_row)=strcat('I(', X(node_LUT_num+1:C_column_row),')');   %X�����е��������ϵ������� �� I(Vin) I(L1)
+fid=fopen(output_file, 'w');
 
-fid=fopen([result,'\report.txt'], 'w');
+fprintf(fid,'** Matrix C (Size: %d x %d) **\n',C_col_row, C_col_row);
+fprintf(fid,'   This Matrix is too large. Please see C.mat \n'); 
 
-fprintf(fid,'** Matrix C (Size: %d x %d) **\n',C_column_row, C_column_row);
-fprintf(fid,'   This Matrix is too large. Please see results\\C.mat \n'); 
+fprintf(fid,'\n** Matrix G (Size: %d x %d) **\n',G_col_row, G_col_row);      
+fprintf(fid,'   This Matrix is too large. Please see G.mat  \n'); 
 
-fprintf(fid,'\n** Matrix G (Size: %d x %d) **\n',G_column_row, G_column_row);        %��ӡ����G���ı�
-fprintf(fid,'   This Matrix is too large. Please see results\\G.mat  \n'); 
+fprintf(fid,'\n** Matrix B (Size: %d x %d) **\n',B_col, B_row);      
+fprintf(fid,'   This Matrix is too large. Please see B.mat  \n'); 
 
-fprintf(fid,'\n** Matrix B (Size: %d x %d) **\n',B_column, B_row);       %��ӡ����B���ı�
-fprintf(fid,'   This Matrix is too large. Please see results\\B.mat  \n'); 
+fprintf(fid,'\n** Matrix LT (Size: %d x %d) **\n',LT_col, LT_row);       
+fprintf(fid,'   This Matrix is too large. Please see LT.mat  \n');
 
-fprintf(fid,'\n** Matrix LT (Size: %d x %d) **\n',LT_column, LT_row);         %��ӡ����LT���ı�
-fprintf(fid,'   This Matrix is too large. Please see results\\LT.mat  \n');
-
-fprintf(fid,'\n** Vector X (Size: %d x %d) **\n',C_column_row, 1);
-if(C_column_row<20)
+fprintf(fid,'\n** Vector X (Size: %d x %d) **\n',C_col_row, 1);
+if(C_col_row<20)
     n=1;
-    while n<=C_column_row
-        fprintf(fid,'  %s', X{n});         %��ӡ����X���ı�
+    while n<=C_col_row
+        fprintf(fid,'  %s', X{n});    
         n=n+1;
     end
 else
-    fprintf(fid,'   This Vector is too large. Please see results\\X.mat  '); 
+    fprintf(fid,'   This Vector is too large. Please see X.mat  '); 
 end
 
-fprintf(fid,'\n\n** Vector Y (Size: %d x %d) **\n',quest_num, 1);
-if(quest_num<20)
+fprintf(fid,'\n\n** Vector Y (Size: %d x %d) **\n',probe_num, 1);
+if(probe_num<20)
     n=1;
-    while n<=quest_num
-        fprintf(fid,'  %s', Y{n});      %��ӡ����Y���ı�
+    while n<=probe_num
+        fprintf(fid,'  %s', Y{n});
         n=n+1;
     end
 else
-    fprintf(fid,'   This Vector is too large. Please see results\\Y.mat  '); 
+    fprintf(fid,'   This Vector is too large. Please see Y.mat  '); 
 end
     
 fprintf(fid,'\n\n** Vector U (Size: %d x %d) **\n',B_row, 1);
 if(B_row<20)
     n=1;
     while n<=source_num
-        fprintf(fid,'  %s', U{n});          %��ӡ����U���ı�
+        fprintf(fid,'  %s', U{n});    
         n=n+1;
     end
 else
-    fprintf(fid,'  This Vector is too large. Please see results\\U.mat  \n'); 
+    fprintf(fid,'  This Vector is too large. Please see U.mat  \n'); 
 end
 
-save ([results, '\C.mat'], C);           %�洢ϡ�����C
+save ([output_dir, '/C.mat'], 'C');      
+save ([output_dir, '/G.mat'], 'G');      
+save ([output_dir, '/B.mat'], 'B');     
+save ([output_dir, '/LT.mat'], 'LT');     
 
-save ([results, '\G.mat'], G);           %�洢ϡ�����G
 
-save ([results, '\B.mat'], B);           %�洢ϡ�����B
-
-save ([results, '\LT.mat'], LT);         %�洢ϡ�����LT 
-
-X=X';                           %��X����תΪ�������洢
-Y=Y';                           %��Y����תΪ�������洢
-save ([results, '\X.mat'], X);           %�洢����X
-save ([results, '\Y.mat'], Y);           %�洢����Y
-save ([results, '\U.mat'], U);           %�洢����U
+X=X';                       
+Y=Y';                 
+save ([output_dir, '/X.mat'], 'X');      
+save ([output_dir, '/Y.mat'], 'Y');      
+save ([output_dir, '/U.mat'], 'U');      
+    
 fprintf('得到mna方程\n');
 fclose(fid);
 

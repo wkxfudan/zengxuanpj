@@ -1,0 +1,20 @@
+** Matrix C (Size: 13 x 13) **
+   This Matrix is too large. Please see C.mat 
+
+** Matrix G (Size: 13 x 13) **
+   This Matrix is too large. Please see G.mat  
+
+** Matrix B (Size: 13 x 1) **
+   This Matrix is too large. Please see B.mat  
+
+** Matrix LT (Size: 1 x 13) **
+   This Matrix is too large. Please see LT.mat  
+
+** Vector X (Size: 13 x 1) **
+  V(1)  V(3)  V(4)  V(2)  V(5)  I(Vin)  I(Ls1_X1)  I(Ls2_X1)  I(Ls1_X2)  I(Ls2_X2)  I(Ls1)  I(Ls1)  I(Ls2)
+
+** Vector Y (Size: 1 x 1) **
+  V(5)
+
+** Vector U (Size: 1 x 1) **
+  Vin

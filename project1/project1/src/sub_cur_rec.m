@@ -7,6 +7,7 @@ sub_cur_flag=0;					%标记
 
 while ~feof(netlist)			%判断是否读到网表的最后一行
 	line=fgetl(netlist);		%读取网表文件的一行
+
 	%如果是空行和注释行，跳过
 	if(isempty(line) || line(1)=='*')
 		continue; 				
@@ -16,7 +17,7 @@ while ~feof(netlist)			%判断是否读到网表的最后一行
 	sub_cur= regexp(line, '\s+', 'split'); 	
      
 	%判断是否进入子电路，如果进入子电路，则进行标记，并计数
-	if (strcmpi(sub_cur{1}, '.SUB_cur'))		
+	if (strcmpi(sub_cur{1}, '.SUBCKT'))		
         sub_cur_flag=1;								
         sub_cur_n=sub_cur_n+1;
         i=1;
@@ -38,10 +39,10 @@ while ~feof(netlist)			%判断是否读到网表的最后一行
 	end
 
 	%如果电路结束，则结束
-	if (strcmpi(netlist{1},'.END'))
+    if (strcmpi(sub_cur{1},'.END'))
         break
     end 	
 
 end
-fprintf('子电路 <<%s>> 处理完成\n', benchmark);
+fprintf('子电路处理完成\n');
 fclose(netlist)	;
