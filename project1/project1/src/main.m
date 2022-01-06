@@ -20,7 +20,7 @@ while ~feof(benchmarks)                 %读取按行读取benchmark文件
     output_file = fullfile(output_dir, [benchmark, '.out']);
 
 
-    sub_cur
+    sub_cur_rec
     sub_cur_map
     node_num
     matrix_gen
