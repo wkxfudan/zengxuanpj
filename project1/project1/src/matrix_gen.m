@@ -51,7 +51,7 @@ while line_num<=line_num_total
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             value=net{line_num}{4};
-			if(node1==0||node2==0)                  %����G����
+			if(node1==0||node2==0)                 
 				node_add=node1+node2;
 				G(node_add,node_add)=G(node_add,node_add)+1/value;
 			else
@@ -60,11 +60,11 @@ while line_num<=line_num_total
 				G(node1,node2)=G(node1,node2)-1/value;
 				G(node2,node1)=G(node2,node1)-1/value;
 			end
-		case('C')                                   %���Ԫ���ǵ��ݣ������·�������
+		case('C')                                   %电容处理 
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             value=net{line_num}{4};
-			if(node1==0||node2==0)                  %����C����
+			if(node1==0||node2==0)                  
 				node_add=node1+node2;               
 				C(node_add,node_add)=C(node_add,node_add)+value;
 			else
@@ -73,15 +73,15 @@ while line_num<=line_num_total
 				C(node1,node2)=C(node1,node2)-value;
 				C(node2,node1)=C(node2,node1)-value;
 			end
-		case('L')                                   %���Ԫ���ǵ�У������·�������
+		case('L')                                   %电感处理    
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             value=net{line_num}{4};
 			X_insert_num=X_insert_num+1;
 			node_add=node_LUT_num+X_insert_num;
-			X{node_add}=net{line_num}{1};           %��X�����в���L�ϵĵ������ƣ���ʵ�������L��Ԫ��������output.m�л���ϵ�����ǩ����I(L1)��
+			X{node_add}=net{line_num}{1};           
 			C(node_add,node_add)=value;
-			if (node1==0)                           %����G����
+			if (node1==0)                          
 			
 			else
 				G(node_add,node1)=-1;
@@ -94,17 +94,17 @@ while line_num<=line_num_total
 				G(node_add,node2)=1;
 				G(node2,node_add)=-1;
 			end
-		case('V')                                   %���Ԫ���Ƕ�����ѹԴ�������·�������
+		case('V')                                   %独立电压源处理
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             value=net{line_num}{4};
 			source_num=source_num+1;
-			U{source_num}=net{line_num}{1};         %��������ѹԴ���뵽U������
+			U{source_num}=net{line_num}{1};         
 			X_insert_num=X_insert_num+1;
 			node_add=node_LUT_num+X_insert_num;
-			X{node_add}=net{line_num}{1};           %��X�����в���V�ϵĵ������ƣ���ʵ�������V��Ԫ��������output.m�л���ϵ�����ǩ����I(V1)��
-			B(node_add,source_num)=1;               %����B����
-			if (node1==0)                           %����G����
+			X{node_add}=net{line_num}{1};           
+			B(node_add,source_num)=1;               
+			if (node1==0)                          
 			
 			else
 				G(node_add,node1)=1;
@@ -117,13 +117,13 @@ while line_num<=line_num_total
 				G(node_add,node2)=-1;
 				G(node2,node_add)=1;
 			end
-		case('I')                                   %���Ԫ���Ƕ�������Դ�������·�������
+		case('I')                                   %独立电流源处理  
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             value=net{line_num}{4};
 			source_num=source_num+1;
-			U{source_num}=net{line_num}{1};         %����������Դ���뵽U������
-			if (node1==0)                           %����B����
+			U{source_num}=net{line_num}{1};       
+			if (node1==0)                        
 			
             else
                 B(node1,source)=-1;
@@ -134,10 +134,10 @@ while line_num<=line_num_total
             else
 				B(node2,source)=1;
 			end
-		case('K')                                   %���Ԫ���ǻ��У������·�������
+		case('K')                                   %互感处理
             value=net{line_num}{4};
 			L_order=1;
-			while L_order<=2                        %�����ҵ��������е�2����е�λ��
+			while L_order<=2                        
 				n=node_LUT_num+1;
 				while n<=size(X,2)
 					if (strcmpi(net{line_num}{L_order+1},X{n}))
@@ -147,9 +147,9 @@ while line_num<=line_num_total
 					end
 				end
 				
-				if (n<=size(X,2))                   %�������Ѿ������������������Ϣ�Ѿ������������           
-					L_n(L_order)=n;                 %����õ�е�λ��
-                else                                %�����л�û��������������δ��������������Ϣ��Ѱ�Ҹõ�в�����
+				if (n<=size(X,2))                            
+					L_n(L_order)=n;                 
+                else                               
 					X_insert_num=X_insert_num+1;
 					node_add=node_LUT_num+X_insert_num;					
 					n=line_num+1;
@@ -160,7 +160,7 @@ while line_num<=line_num_total
 							n=n+1;
 						end
 					end
-					C(node_add,node_add)=net{n}{4};     %�ҵ���У�����C�����G����
+					C(node_add,node_add)=net{n}{4};     
 					node1=net{n}{2};
 					node2=net{n}{3};
 					if (node1==0)
@@ -176,15 +176,15 @@ while line_num<=line_num_total
 						G(node_add,node2)=1;
 						G(node2,node_add)=-1;
 					end
-					X{node_add}=net{n}{1};              %�����ǵ�У������֮ǰ������еĲ�����ͬ��Ҫ����X�����е���Ϣ
-					net{n}{1}='_Ready';                 %�����������ĵ���Ѿ�����������˱�Ǹõ�е�������Ϣ�������ظ��������� _Ready���»���"_"��Ϊ�˱��⵱�����账��
-					L_n(L_order)=node_add;              %����õ�е�λ��
+					X{node_add}=net{n}{1};             
+					net{n}{1}='_Ready';                 
+					L_n(L_order)=node_add;              
 				end
-				L_order=L_order+1;                      %������һ�����
+				L_order=L_order+1;                      
 			end
-			C(L_n(1),L_n(2))=-value*sqrt(C(L_n(1),L_n(1))*C(L_n(2),L_n(2)));        %�����ѵõ���2���λ����Ϣ������ϵ�����µ�C������
+			C(L_n(1),L_n(2))=-value*sqrt(C(L_n(1),L_n(1))*C(L_n(2),L_n(2)));       
 			C(L_n(2),L_n(1))=C(L_n(1),L_n(2));
-        case('E')                                       %�����ѹ�ص�ѹԴVCVS
+        case('E')                                      
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             node3=net{line_num}{4};
@@ -192,9 +192,9 @@ while line_num<=line_num_total
             value=net{line_num}{6};
 			X_insert_num=X_insert_num+1;
 			node_add=node_LUT_num+X_insert_num;
-			X{node_add}=net{line_num}{1};               %���ܿص�ѹԴ������Ϣ���µ�����X����ʵ�������E��Ԫ��������output.m�л���ϵ�����ǩ����I(E1)��
+			X{node_add}=net{line_num}{1};               
 
-			if (node1==0)                               %����G����
+			if (node1==0)                               
 			
 			else
 				G(node_add,node1)=G(node_add,node1)+1;
@@ -220,14 +220,14 @@ while line_num<=line_num_total
 				G(node_add,node4)=G(node_add,node4)+value;
             end
             
-        case('G')                                       %�����ѹ�ص���ԴVCCS
+        case('G')                                       %压控电流源处理
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             node3=net{line_num}{4};
             node4=net{line_num}{5};
             value=net{line_num}{6};
             
-			if (node1==0||node3==0)                     %����G����
+			if (node1==0||node3==0)                     
 			
 			else
 				G(node1,node3)=G(node1,node3)+value;
@@ -251,10 +251,10 @@ while line_num<=line_num_total
 				G(node2,node4)=G(node2,node4)+value;
             end
             
-        case('H')                                       %��������ص�ѹԴCCVS
+        case('H')                                       %流控电压源处理
             n=node_LUT_num+1;
-            V_ctrl=net{line_num}{4};                    %��ȡ�������Ƶ����ĵ�ѹԴ��V_ctrl
-            while n<=size(X,2)                          %ȷ���õ�ѹԴ��λ�ã������X������û���ҵ���˵���õ�ѹԴ����Ϣ��û����������δ������������Ϣ��Ѱ�Ҹõ�ѹԴ
+            V_ctrl=net{line_num}{4};                    
+            while n<=size(X,2)                          
                 if (strcmpi(V_ctrl,X{n}))
                     break
                 else
@@ -264,7 +264,7 @@ while line_num<=line_num_total
 
             if (n<=size(X,2))
                 V_match=n;
-            else                                        %�õ�ѹԴ����Ϣ��û��������δ������������Ϣ��Ѱ�Ҹõ�ѹԴ���ҵ�֮�󣬰���֮ǰ������ѹԴ�Ĳ�����ͬ�ķ���������ѹԴ��Ϣ
+            else                                        
                 X_insert_num=X_insert_num+1;
                 node_add=node_LUT_num+X_insert_num;
                 n=line_num+1;
@@ -278,11 +278,11 @@ while line_num<=line_num_total
                 node1=net{n}{2};
                 node2=net{n}{3};
                 value=net{n}{4};          
-                X{node_add}=net{n}{1};                  %����ѹԴ��Ϣ���µ�X����        
+                X{node_add}=net{n}{1};         
                 source_num=source_num+1;
-                U{source_num}=net{n}{1};                %����ѹԴ��Ϣ���µ�U����  
-                B(node_add,source_num)=1;               %����ѹԴ��Ϣ���µ�B����
-                if (node1==0)                           %����ѹԴ��Ϣ���µ�G���� 
+                U{source_num}=net{n}{1};                 
+                B(node_add,source_num)=1;               
+                if (node1==0)                            
 
                 else
                     G(node_add,node1)=1;
@@ -296,16 +296,16 @@ while line_num<=line_num_total
                     G(node2,node_add)=1;
                 end
                 V_match=node_add;
-                net{n}{1}='_Ready';                     %��Ǹ��º�ĵ�ѹԴ������֮�󱻴���
+                net{n}{1}='_Ready';                     
             end         
             node1=net{line_num}{2};
             node2=net{line_num}{3};        
             value=net{line_num}{5};       
 			X_insert_num=X_insert_num+1;
 			node_add=node_LUT_num+X_insert_num;
-			X{node_add}=net{line_num}{1};               %���ܿ�Դ����Ϣ���µ�X����
+			X{node_add}=net{line_num}{1};               
 
-            if (node1==0)                               %���ܿ�Դ����Ϣ���µ�G����
+            if (node1==0)                               
 			
             else
 				G(node1,node_add)=G(node1,node_add)+1;
@@ -335,9 +335,9 @@ while line_num<=line_num_total
 				G(V_match,V_match)=G(V_match,V_match)-value;
             end
             
-        case('F')                                       %��������ص���ԴCCCS
+        case('F')                                       %流控电流源
             n=node_LUT_num+1;
-            V_ctrl=net{line_num}{4};                    %��ȡ�������Ƶ����ĵ�ѹԴ��V_ctrl
+            V_ctrl=net{line_num}{4};                    
             while n<=size(X,2)              
                 if (strcmpi(V_ctrl,X{n}))
                     break
@@ -383,11 +383,11 @@ while line_num<=line_num_total
                 V_match=node_add;
                 net{n}{1}='_Ready';
             end         
-            node1=net{line_num}{2};             %�ҵ���ѹԴ֮�󣬽��ܿ�Դ����Ϣ���µ�������
+            node1=net{line_num}{2};            
             node2=net{line_num}{3};
             value=net{line_num}{5};
                       
-            if (node1==0||V_match==0)           %����CCCS��������������G����
+            if (node1==0||V_match==0)           
 			
 			else
 				G(node1,V_match)=G(node1,V_match)+value;
@@ -408,23 +408,23 @@ quest_order=1;
 while quest_i<=quest_line 
     quest_n=1;
     while quest_n<=size(quest{quest_line},2)-1                            
-        Y{quest_order}=quest{quest_i}{quest_n+1};                   %��������Ϣ���µ�Y������
-        quest_node=Y{quest_order}(3:end-1);                         %Ϊ����Ƚϣ���V()��I()��ȥ����ɵ��ڵ�
-        if (strcmpi(Y{quest_order}(1), 'V'))                        %����Ǵ���ֵ�ǵ�ѹ���߰����´���
+        Y{quest_order}=quest{quest_i}{quest_n+1};                 
+        quest_node=Y{quest_order}(3:end-1);                         
+        if (strcmpi(Y{quest_order}(1), 'V'))                       
             m=1;
             while m<=node_LUT_num
                 if (strcmpi(quest_node,X{m}))                   
-                    LT(quest_order,m)=1;                            %����LT����
+                    LT(quest_order,m)=1;                            
                     break
                 end
                 m=m+1;
             end
         else
-            if (strcmpi(Y{quest_order}(1), 'I'))                    %����Ǵ���ֵ�ǵ������߰����´���           
+            if (strcmpi(Y{quest_order}(1), 'I'))                         
                 m=node_LUT_num+1;
                 while m<=size(X,2)
                     if (strcmpi(quest_node,X{m}))
-                        LT(quest_order,m)=1;                        %����LT����
+                        LT(quest_order,m)=1;                      
                         break
                     end
                     m=m+1;

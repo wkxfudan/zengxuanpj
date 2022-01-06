@@ -22,8 +22,8 @@ while ~feof(benchmarks)                 %读取按行读取benchmark文件
 
     sub_cur
     sub_cur_map
-    count_node_num
-    newnet_mtr
+    node_num
+    matrix_gen
     output
 
 end
