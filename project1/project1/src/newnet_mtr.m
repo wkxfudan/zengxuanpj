@@ -1,14 +1,16 @@
-%���������
+%生成各个矩阵
 line_num=1;
-line_num_total=size(net,2);         %���������ܸ���
-node_LUT_num=size(node_LUT,2);      %�ڵ���ұ��е��ܽڵ���
+line_num_total=size(net,2);         %网表描述总个数
+node_LUT_num=size(node_LUT,2);      %节点查找表中的总节点数
 L_num=0;
 V_num=0;
 I_num=0;
 E_num=0;
 H_num=0;
 
-while line_num<=line_num_total      %ͳ�Ƶ�С���ѹԴ������Դ��������������ʼ��������
+
+%统计电感、电压源、电流源的数量，用来初始化各矩阵
+while line_num<=line_num_total      
 	switch upper(net{line_num}{1}(1))
 		case('L')
 			L_num=L_num+1;
@@ -25,27 +27,27 @@ while line_num<=line_num_total      %ͳ�Ƶ�С���ѹԴ������
 	line_num=line_num+1;
 end
 
-C_column_row=node_LUT_num+L_num+V_num+E_num+H_num;  %����C������к��е�ֵ
-G_column_row=C_column_row;                          %����C������к��е�ֵ
-B_column=C_column_row;                              %����B������е�ֵ
-B_row=V_num+I_num;                                  %����B������е�ֵ
-LT_column=quest_num;                                %����LT������е�ֵ
-LT_row=C_column_row;                                %����LT������е�ֵ
+C_col_row=node_LUT_num+L_num+V_num+E_num+H_num;  %C矩阵的行和列
+G_col_row=C_col_row;                          %G矩阵的行和列
+B_col=C_col_row;                              %B矩阵的列
+B_row=V_num+I_num;                                  %B矩阵的行
+LT_col=quest_num;                                %LT矩阵的列
+LT_row=C_col_row;                                %LT矩阵的列
 
-C=sparse(C_column_row,C_column_row,0);              %��ʼ��C������ϡ�����洢
-G=sparse(G_column_row,G_column_row,0);              %��ʼ��G������ϡ�����洢
-X=node_LUT;                                         %��ʼ��X��������ϡ�����洢��ֻ������ѹ����������(�ɶ�����ѹԴ��VCVS CCVS ��в�������֮�����β���
-B=sparse(C_column_row,B_row,0);                     %��ʼ��B������ϡ�����洢
-LT=sparse(LT_column,LT_row,0);                      %��ʼ��LT������ϡ�����洢
+C=sparse(C_col_row,C_col_row,0);              %初始化C矩阵，以稀疏矩阵存储
+G=sparse(G_col_row,G_col_row,0);              %初始化G矩阵，以稀疏矩阵存储
+X=node_LUT;                                         %初始化X向量，以稀疏矩阵存储，只包含电压量，电流量(由独立电压源，VCVS CCVS 电感产生）在之后依次插入
+B=sparse(C_col_row,B_row,0);                     %初始化B矩阵，以稀疏矩阵存储
+LT=sparse(LT_col,LT_row,0);                      %初始化LT矩阵，以稀疏矩阵存储
 
 line_num=1;         
-X_insert_num=0;                                     %��ʾ�Ѿ�����X�����ĵ�����
-source_num=0;                                       %��ʾ�Ѿ�����U�����Ķ���Դ��Ŀ
+X_insert_num=0;                                     %表示已经插入X向量的电流量
+source_num=0;                                       %表示已经插入U向量的独立源数目
 while line_num<=line_num_total
 	
 	
-	switch upper(net{line_num}{1}(1))               %���ַ���ת��Ϊ��д��ʽ�Ƚϣ��Դ˺��Դ�Сд
-		case('R')                                   %���Ԫ���ǵ��裬�����·�������
+	switch upper(net{line_num}{1}(1))               %将字符串转化为大写形式比较，以此忽略大小写
+		case('R')                                   %电阻处理
             node1=net{line_num}{2};
             node2=net{line_num}{3};
             value=net{line_num}{4};

@@ -1,0 +1,20 @@
+** Matrix C (Size: 699 x 699) **
+   This Matrix is too large. Please see results\C.mat 
+
+** Matrix G (Size: 699 x 699) **
+   This Matrix is too large. Please see results\G.mat  
+
+** Matrix B (Size: 699 x 1) **
+   This Matrix is too large. Please see results\B.mat  
+
+** Matrix LT (Size: 1 x 699) **
+   This Matrix is too large. Please see results\LT.mat  
+
+** Vector X (Size: 699 x 1) **
+   This Vector is too large. Please see results\X.mat  
+
+** Vector Y (Size: 1 x 1) **
+  V(TDN1a9)
+
+** Vector U (Size: 1 x 1) **
+  Vin1

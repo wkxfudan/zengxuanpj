@@ -1,4 +1,5 @@
-../benchmark/Bus_l12s16.sp
-../benchmark/Test_0.sp
-../benchmark/Tree_l7.sp
-../benchmark/RLC_s3.sp
+#banchmark应当放在benchmark路径下，后缀为.sp
+Bus_l12s16
+Test_0
+Tree_l7
+RLC_s3
