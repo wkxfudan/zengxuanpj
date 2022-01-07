@@ -13,11 +13,10 @@ while ~feof(old_netlist)        					%判断是否读到网表结束位置
 		continue; 				
 	end	
 
-	
 	circuit=regexp(line,'(\S)+', 'match');			%将本行非空内容读为电路内容
 	
 	%子电路判断，如果读到子电路，则不进行处理直接保存电路内容中
-	if (strcmpi(circuit{1}, '.SUB_cur'))	
+	if (strcmpi(circuit{1}, '.SUBCKT'))	
         sub_cur_flag=1;
 		continue;	
 	elseif (strcmpi(circuit{1}, '.ENDS'))

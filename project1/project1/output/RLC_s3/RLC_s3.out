@@ -1,20 +1,40 @@
-** Matrix C (Size: 14 x 14) **
-   This Matrix is too large. Please see C.mat 
+** Matrix C (Size: 11 x 11) **
+         0         0         0         0         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0         0         0         0         0
+         0         0         4         0         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0         0         0         0         0
+         0         0         0         0         4         0         0         0         0         0         0
+         0         0         0         0         0         0         0         0         0         0         0
+         0         0         0         0         0         0         6         0         0         0         0
+         0         0         0         0         0         0         0         0         0         0         0
+         0         0         0         0         0         0         0         0         2         0         0
+         0         0         0         0         0         0         0         0         0         2         0
+         0         0         0         0         0         0         0         0         0         0         2
 
-** Matrix G (Size: 14 x 14) **
-   This Matrix is too large. Please see G.mat  
+** Matrix G (Size: 11 x 11) **
+   0.33333  -0.33333         0         0         0         0         0  -1.00000         0         0         0
+  -0.33333   0.33333         0         0         0         0         0         0   1.00000         0         0
+         0         0   0.33333  -0.33333         0         0         0         0  -1.00000         0         0
+         0         0  -0.33333   0.33333         0         0         0         0         0   1.00000         0
+         0         0         0         0   0.33333  -0.33333         0         0         0  -1.00000         0
+         0         0         0         0  -0.33333   0.33333         0         0         0         0   1.00000
+         0         0         0         0         0         0         0         0         0         0  -1.00000
+   1.00000         0         0         0         0         0         0         0         0         0         0
+         0  -1.00000   1.00000         0         0         0         0         0         0         0         0
+         0         0         0  -1.00000   1.00000         0         0         0         0         0         0
+         0         0         0         0         0  -1.00000   1.00000         0         0         0         0
 
-** Matrix B (Size: 14 x 1) **
-   This Matrix is too large. Please see B.mat  
-
-** Matrix LT (Size: 1 x 14) **
-   This Matrix is too large. Please see LT.mat  
-
-** Vector X (Size: 14 x 1) **
-  V(N_in1)  V(N_1_X1)  V(n_in2)  V(N_1_X2)  V(N_in3)  V(N_1_X3)  V(n_out)  V(N_IN)  V(N_1)  I(Vin)  I(Lseg_X1)  I(Lseg_X2)  I(Lseg_X3)  I(Lseg)
+** Matrix B (Size: 11 x 1) **
+(8,1)		1
+ 
+** Matrix LT (Size: 1 x 11) **
+(1,7)		1
+ 
+** Vector X (Size: 11 x 1) **
+    V(N_IN1)    V(N_1_X1)    V(N_IN2)    V(N_1_X2)    V(N_IN3)    V(N_1_X3)    V(N_OUT)    I(VIN)    I(LSEG_X1)    I(LSEG_X2)    I(LSEG_X3)
 
 ** Vector Y (Size: 1 x 1) **
-  V(n_out)
+    V(N_OUT)
 
 ** Vector U (Size: 1 x 1) **
-  Vin
+    VIN

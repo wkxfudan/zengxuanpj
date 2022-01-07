@@ -9,6 +9,3 @@ Rseg_X3 n_in3 N_1_X3 3
 Lseg_X3 n_1_X3 n_out 2
 Cseg_X3 n_out 0 4
 Cl	n_out	0		2
-Rseg	N_IN	N_1		3
-Lseg	n_1		N_OUT	2
-Cseg	N_OUT	0		4
