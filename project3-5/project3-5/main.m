@@ -89,9 +89,9 @@ title('所选输出绝对误差分布');
 
 %打印输出
 
-fprintf('后项欧拉方法计算点数: %d\n',size(data,1));
-fprintf('后项欧拉方法总模拟时间: %d(s)\n',time);
-fprintf('所选输出最大绝对误差: %f\n',max(abs(error)));
-fprintf('所选输出均方绝对误差MSE: %f\n',MSE);
+fprintf('后项欧拉方法计算点数:      %d\n',size(data,1));
+fprintf('后项欧拉方法总模拟时间:    %d(s)\n',time);
+fprintf('最大绝对误差:             %f\n',max(abs(error)));
+fprintf('均方绝对误差MSE:          %f\n',MSE);
 
 
