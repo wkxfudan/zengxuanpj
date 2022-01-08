@@ -15,7 +15,7 @@ tic;
 [L0,U0,change_line_info,LU_info,change_line_num,change_LU_num]=LU_gen(G);%进行LU分解
 b=B*U;
 u(:,1)=U;%所有独立源输入在初始时刻的值
-x(:,1)=solveLU(L0,U0,b,change_line_info,LU_info,change_line_num,change_LU_num);%解方程得到所有未知量的初始值
+x(:,1)=solve_LU(L0,U0,b,change_line_info,LU_info,change_line_num,change_LU_num);%解方程得到所有未知量的初始值
 
 
 %后项欧拉法解方程
