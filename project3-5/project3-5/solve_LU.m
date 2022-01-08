@@ -1,5 +1,5 @@
 %直接法解方程函数
-function x=solveLU(L,U,b,change_line_info,LU_info,change_line_num,change_LU_num)
+function x=solve_LU(L,U,b,change_line_info,LU_info,change_line_num,change_LU_num)
     %主要用于初值问题和迭代问题两部分
     %特殊性在于解方程前b的变换和解方程后x的恢复
     

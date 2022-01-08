@@ -24,7 +24,7 @@ x(:,1)=solveLU(L0,U0,b,change_line_info,LU_info,change_line_num,change_LU_num);%
 for i=1:n
    u(:,i+1)=src_gen(U,SRC,t_step*i); 
    b=B*u(:,i+1)+C*x(:,i)/t_step;
-   x(:,i+1)=solveLU(L1,U1,b,change_line_info,LU_info,change_line_num,change_LU_num);
+   x(:,i+1)=solve_LU(L1,U1,b,change_line_info,LU_info,change_line_num,change_LU_num);
 end
 y=LT*x; 
 
