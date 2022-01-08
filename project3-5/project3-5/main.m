@@ -46,25 +46,25 @@ end
     ylabel('input');
     title('输入波形');
     
-    subplot(2,2,2);
-    for i=1:size(y,1)%即确定有多少个源，画多少条线
-            m=1/round(unifrnd(1,5,1,1));
-            o=1/round(unifrnd(1,5,1,1));
-            p=1/round(unifrnd(1,5,1,1));
-        plot(t,y(i,:),'color',[m,o,p]);
-        hold on;
-    end
-        xlabel('time(t)');
-        ylabel('output');
-        title('后向欧拉法输出波形');
-        
-    subplot(2,2,3);
-    plot(t,y(1,:),'-g');
-    hold on
-    plot(t,data(:,2),'r');
+subplot(2,2,2);
+for i=1:size(y,1)%即确定有多少个源，画多少条线
+        m=1/round(unifrnd(1,5,1,1));
+        o=1/round(unifrnd(1,5,1,1));
+        p=1/round(unifrnd(1,5,1,1));
+    plot(t,y(i,:),'color',[m,o,p]);
+    hold on;
+end
     xlabel('time(t)');
-    ylabel('compare');
-    title('后向欧拉法输出波形与SPICE输出波形对比');
+    ylabel('output');
+    title('后向欧拉法输出波形');
+    
+subplot(2,2,3);
+plot(t,y(1,:),'-g');
+hold on
+plot(t,data(:,2),'r');
+xlabel('time(t)');
+ylabel('compare');
+title('后向欧拉法输出波形与SPICE输出波形对比');
 
 
 %计算误差
